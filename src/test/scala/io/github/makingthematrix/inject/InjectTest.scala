@@ -27,6 +27,16 @@ class InjectTest extends munit.FunSuite:
     assertEquals("foo", new Bar().str)
   }
 
+  test("Inject in the constructor") {
+    Inject.set(new Module {
+      bind[String] to "foo"
+    })
+
+    class Foo(val str: String = Inject.inject[String])
+
+    assertEquals("foo", new Foo().str)
+  }
+
   test("Bind with the default module") {
     case class Foo(str: String)
 
@@ -42,6 +52,27 @@ class InjectTest extends munit.FunSuite:
     }
 
     assertEquals("foo", new Bar().str)
+  }
+
+
+  test("Initialization should be lazy") {
+    var globalN: Int = 1
+
+    class Foo:
+      val fooN: Int = globalN
+
+    Inject.set(new Module {
+      bind[Foo] to Foo()
+    })
+
+    class Bar extends Injectable {
+      def getN: Int = {
+        globalN = 2
+        inject[Foo].fooN
+      }
+    }
+
+    assertEquals(2, new Bar().getN)
   }
 
   test("Bind and inject more than one") {
@@ -78,12 +109,8 @@ class InjectTest extends munit.FunSuite:
       bind[Foo] toProvider  { n += 1; Foo(n) }
     }
 
-    class Bar extends Injectable(module) {
-      def n: Int = {
-        val foo = inject[Foo]
-        foo.n
-      }
-    }
+    class Bar extends Injectable(module):
+      def n: Int = inject[Foo].n
 
     val bar = Bar()
     assertEquals(1, bar.n)
