@@ -102,25 +102,12 @@ Also, on top of binding dependencies as singletons with `to`, you can use `toPro
 ### What is a micro-library?
 
 A micro-library is a library so small that you can basically just include its source code into your project - and you are
-free to do so (as long as you don't break the license). 
-**Inject** consists of only one Scala 3 file, and only a handful of methods in its API:
-```scala 3
-object Inject:
-  def set(defaultModule: Module): Unit
-  def inject[T: TypeName]: T
+free to do so (as long as you don't break the license). **Inject** consists of only one Scala 3 file, and just a handful 
+of methods in its API: you can create a module and a list of bindings, set the module as default, or join it with other 
+modules, and then use it to inject dependencies - that's it. 
 
-trait Injectable(module: Module):
-  def inject[T: TypeName]: T
-
-class Module:
-  def ::(module: Module): Module
-  
-  protected final class Binding[T: TypeName]:
-    def to(fn: => T): Unit
-    def toProvider(fn: => T): Unit
-    
-  protected def bind[T: TypeName]: Binding[T]
-```
+Another advantage of all this simplicity is that a micro-library can be easily covered with unit tests, and once it works,
+there is little risk that it will ever have breaking changes (or that it will change at all).
 
 ### What about circular dependencies?
 

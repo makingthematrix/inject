@@ -32,7 +32,8 @@ class InjectTest extends munit.FunSuite:
       bind[String] to "foo"
     })
 
-    class Foo(val str: String = Inject.inject[String])
+    import Inject.inject
+    class Foo(val str: String = inject[String])
 
     assertEquals("foo", new Foo().str)
   }
@@ -54,6 +55,22 @@ class InjectTest extends munit.FunSuite:
     assertEquals("foo", new Bar().str)
   }
 
+  test("throw a no binding exception") {
+    case class Foo(str: String)
+
+    Inject.set(new Module {
+      bind[Foo] to Foo("foo")
+    })
+
+    class Bar extends Injectable {
+      def n: Int = {
+        val n = inject[Int]
+        n
+      }
+    }
+
+    intercept[NoBindingException](new Bar().n)
+  }
 
   test("Initialization should be lazy") {
     var globalN: Int = 1
@@ -84,22 +101,13 @@ class InjectTest extends munit.FunSuite:
       bind[Baz] to Baz(1)
     }
 
-    class Bar extends Injectable(module) {
-      def str: String = {
-        val foo = inject[Foo]
-        foo.str
-      }
-
-      def n: Int = {
-        val baz = inject[Baz]
-        baz.n
-      }
-    }
+    class Bar extends Injectable(module):
+      def str: String = inject[Foo].str
+      def n: Int = inject[Baz].n
 
     assertEquals("foo", new Bar().str)
     assertEquals(1, new Bar().n)
   }
-
 
   test("Bind to provider") {
     case class Foo(n: Int)
@@ -115,6 +123,30 @@ class InjectTest extends munit.FunSuite:
     val bar = Bar()
     assertEquals(1, bar.n)
     assertEquals(2, bar.n)
+  }
+
+  test("Merge two modules") {
+    case class Foo(str: String)
+
+    val module1 = new Module {
+      bind[Foo] to Foo("foo")
+    }
+
+    case class Bar(n: Int)
+
+    val module2 = new Module {
+      bind[Bar] to Bar(1)
+    }
+
+    val module3 = module1 :: module2
+
+    class C extends Injectable(module3): // can inject both Foo and Bar
+      def foo: String = inject[Foo].str
+      def bar: Int = inject[Bar].n
+
+    val c = C()
+    assertEquals("foo", c.foo)
+    assertEquals(1, c.bar)
   }
 
   test("ground type") {
