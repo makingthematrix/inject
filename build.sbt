@@ -34,8 +34,8 @@ ThisBuild / sonatypeCredentialHost := "s01.oss.sonatype.org"
 
 scmInfo := Some(
   ScmInfo(
-    url("https://github.com/makingthematrix/signals3"),
-    "scm:git:git@github.com:makingthematrix/signals3.git"
+    url("https://github.com/makingthematrix/inject"),
+    "scm:git:git@github.com:makingthematrix/inject.git"
   )
 )
 
@@ -60,7 +60,7 @@ publishM2Configuration := publishM2Configuration.value.withOverwrite(true)
 
 lazy val root = (project in file("."))
   .settings(
-    name := "signals3",
+    name := "inject",
     libraryDependencies ++= Seq(
       //Test dependencies
       "org.scalameta" %% "munit" % "0.7.29" % "test"

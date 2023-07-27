@@ -87,7 +87,7 @@ class Module { self =>
    * Creates a binding between a given type and an instance that should be injected.
    * The instance might be either a singleton, initialized at the first injected and then used as it is (this is done
    * with the `to` method) or it can be instantiated at every injection (the `toProvider` method).
-   * 
+   *
    * Example:
    * ```scala
    * var n = 0
@@ -100,7 +100,7 @@ class Module { self =>
    *   def str: String = inject[Foo].str
    *   def n: Int = inject[Baz].n
    * ```
-   * 
+   *
    * @tparam T The type identifying the binding
    * @return the binding itself, so that the methods `to` and `toProvider` can be used on it
    */
@@ -121,7 +121,7 @@ class Module { self =>
    * Joins this module with another one, creating a new module which contains bindings from both.
    * If there is binding under the same type in both modules, the one from the module on the right side of the `::`
    * operator will override the one from the left side.
-   * 
+   *
    * @param module The other module
    * @return A new module, containing bindings from both original ones
    */
@@ -134,10 +134,12 @@ class Module { self =>
 
     override private[inject] def binding[T: TypeName]: Option[() => T] = head.binding
 
-    override def toString: String = s"Module($module :: $self, bindings: ${bindings.keys.mkString(",")}, parent: $parent)"
+    override def toString: String =
+      s"Module($module :: $self, bindings: ${bindings.keys.mkString(",")}, parent: $parent), default: ${Inject.isDefault(this)}"
   }
 
-  override def toString: String = s"Module(bindings: ${bindings.keys.mkString(",")}), default: ${Inject.isDefault(this)}"
+  override def toString: String =
+    s"Module(bindings: ${bindings.keys.mkString(",")}), default: ${Inject.isDefault(this)}"
 
   private val bindings = new mutable.HashMap[String, () => _]
 
@@ -161,8 +163,8 @@ class Module { self =>
 
 /**
  * An exception thrown by `inject` methods if no binding for the given type can be found.
- * @param typeName The name of the type for which there was no binding found 
- * @param module The specified module 
+ * @param typeName The name of the type for which there was no binding found
+ * @param module The specified module
  */
 final class NoBindingException(typeName: String, module: Module) extends Exception(s"No binding for $typeName in $module")
 
