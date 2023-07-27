@@ -15,6 +15,32 @@ You need to call the `inject` method explicitly. This requirement might prove un
 is mainly aimed at small projects which need only basic DI functionality. If you are searching for something more powerful,
 please take a look at [macwire](https://github.com/softwaremill/macwire).
 
+## How to use
+
+**sbt**:
+```sbt
+  libraryDependencies += "io.github.makingthematrix" %% "inject" % "1.0.0"
+```
+
+**Maven**:
+```xml
+<dependency>
+    <groupId>io.github.makingthematrix</groupId>
+    <artifactId>inject_3</artifactId>
+    <version>1.0.0</version>
+</dependency>
+```
+
+**Mill**:
+```
+ivy"io.github.makingthematrix::inject:1.0.0"
+```
+
+**Gradle**:
+```
+compile group: 'io.github.makingthematrix', name: 'inject_3', version: '1.0.0'
+```
+
 ## Examples
 
 The most basic way to use **Inject** is to create a single `Module` with all the bindings, set it as default, and then
