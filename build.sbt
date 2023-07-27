@@ -5,6 +5,7 @@ organization := "io.github.makingthematrix"
 sonatypeProfileName := "io.github.makingthematrix"
 
 name := "inject"
+homepage := Some(url("https://github.com/makingthematrix/inject"))
 licenses := Seq("GPL 3.0" -> url("https://www.gnu.org/licenses/gpl-3.0.en.html"))
 ThisBuild / scalaVersion := _scalaVersion
 ThisBuild / versionScheme := Some("semver-spec")

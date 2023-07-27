@@ -1,3 +1,5 @@
+[![Scala CI](https://github.com/makingthematrix/inject/actions/workflows/scala.yml/badge.svg)](https://github.com/makingthematrix/inject/actions/workflows/scala.yml)
+
 # Inject
 A minimalistic dependency injection micro-library
 
