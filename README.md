@@ -140,5 +140,9 @@ graph of your project, and if you're not careful, it will happily freeze your ap
 1. A minimalistic DI written a long time ago for [wire-android](https://github.com/wireapp/wire-android), a now-deprecated 
    Wire client app for Android written in Scala 2.11. The author's name is long lost, but I have a feeling it could 
    have been [Zbigniew Szymański](https://github.com/zbsz).
-2. [typename](https://github.com/tpolecat/typename) by [Rob Norris](https://github.com/tpolecat), a micro-library for
-   finding, well, type names.
+2. [typename](https://github.com/tpolecat/typename) by [Rob Norris](https://github.com/tpolecat), a micro-library for, well,
+   finding, type names. It's based on `scala.quotes`, so it's more lightweight than, say, if we used `ClassTag` or `Manifest`.
+
+---
+If you like what you see here, take a look at [signals3](https://github.com/makingthematrix/signals3), an lightweight event streams
+library written in Scala 3, which I also salvaged from Wire Android.
