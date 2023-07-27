@@ -17,12 +17,10 @@ class InjectTest extends munit.FunSuite:
       bind[Foo] to Foo("foo")
     }
 
-    class Bar extends Injectable(module) {
-      def str: String = {
+    class Bar extends Injectable(module):
+      def str: String =
         val foo = inject[Foo]
         foo.str
-      }
-    }
 
     assertEquals("foo", new Bar().str)
   }
@@ -45,12 +43,10 @@ class InjectTest extends munit.FunSuite:
       bind[Foo] to Foo("foo")
     })
 
-    class Bar extends Injectable {
-      def str: String = {
+    class Bar extends Injectable:
+      def str: String =
         val foo = inject[Foo]
         foo.str
-      }
-    }
 
     assertEquals("foo", new Bar().str)
   }
@@ -62,12 +58,10 @@ class InjectTest extends munit.FunSuite:
       bind[Foo] to Foo("foo")
     })
 
-    class Bar extends Injectable {
-      def n: Int = {
+    class Bar extends Injectable:
+      def n: Int =
         val n = inject[Int]
         n
-      }
-    }
 
     intercept[NoBindingException](new Bar().n)
   }
@@ -82,12 +76,10 @@ class InjectTest extends munit.FunSuite:
       bind[Foo] to Foo()
     })
 
-    class Bar extends Injectable {
-      def getN: Int = {
+    class Bar extends Injectable:
+      def getN: Int =
         globalN = 2
         inject[Foo].fooN
-      }
-    }
 
     assertEquals(2, new Bar().getN)
   }
