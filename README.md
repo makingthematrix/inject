@@ -144,10 +144,10 @@ bar.n // returns 2
 
 ### What is a micro-library?
 
-A micro-library is a library so small that you can include its source code into your project - and you are
-free to do so, as long as you don't break the license. **Inject** consists of only one Scala 3 file and just a handful 
-of methods in its API: you can create a module and a list of bindings, set the module as default, or join it with other 
-modules, and then use it to inject dependencies - that's it. 
+A micro-library is a library so small that you can include its source code into your project. Ad you are
+free to do so, as long as you don't break the license - just copy [this file](https://github.com/makingthematrix/inject/blob/main/src/main/scala/io/github/makingthematrix/inject/Inject.scala) to your project. 
+**Inject** consists of only one Scala 3 file and just a handful of methods in its API: you can create a module and a list of bindings, 
+set the module as default, or join it with other modules, and then use it to inject dependencies, that's it. 
 
 Another advantage of all this simplicity is that a micro-library can be easily covered with unit tests, and once it works,
 there is little risk that it will ever have breaking changes (or that it will change at all).
