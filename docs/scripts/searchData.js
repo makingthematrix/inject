@@ -1,0 +1,10 @@
+pages = [{"l":"index.html#","e":false,"i":"","n":"inject","t":"inject","d":"","k":"static","x":""},
+{"l":"io/github/makingthematrix/inject.html#","e":false,"i":"","n":"io.github.makingthematrix.inject","t":"io.github.makingthematrix.inject","d":"","k":"package","x":""},
+{"l":"io/github/makingthematrix/inject/Inject$.html#","e":false,"i":"","n":"Inject","t":"Inject","d":"io.github.makingthematrix.inject","k":"object","x":""},
+{"l":"io/github/makingthematrix/inject/Inject$.html#inject-fffff3ba","e":false,"i":"","n":"inject","t":"inject[T : TypeName]: T","d":"io.github.makingthematrix.inject.Inject","k":"def","x":""},
+{"l":"io/github/makingthematrix/inject/Inject$.html#set-20b","e":false,"i":"","n":"set","t":"set(defaultModule: Module): Unit","d":"io.github.makingthematrix.inject.Inject","k":"def","x":""},
+{"l":"io/github/makingthematrix/inject/Injectable.html#","e":false,"i":"","n":"Injectable","t":"Injectable(module: Module)","d":"io.github.makingthematrix.inject","k":"trait","x":""},
+{"l":"io/github/makingthematrix/inject/Injectable.html#inject-fffff3ba","e":false,"i":"","n":"inject","t":"inject[T : TypeName]: T","d":"io.github.makingthematrix.inject.Injectable","k":"def","x":""},
+{"l":"io/github/makingthematrix/inject/Module.html#","e":false,"i":"","n":"Module","t":"Module","d":"io.github.makingthematrix.inject","k":"class","x":""},
+{"l":"io/github/makingthematrix/inject/Module.html#::-ffffff20","e":false,"i":"","n":"::","t":"::(module: Module): Module","d":"io.github.makingthematrix.inject.Module","k":"def","x":""},
+{"l":"io/github/makingthematrix/inject/NoBindingException.html#","e":false,"i":"","n":"NoBindingException","t":"NoBindingException(typeName: String, module: Module) extends Exception","d":"io.github.makingthematrix.inject","k":"class","x":""}];
